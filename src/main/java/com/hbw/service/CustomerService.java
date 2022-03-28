@@ -11,5 +11,7 @@ import com.hbw.entity.Customer;
  */
 public interface CustomerService extends IService<Customer> {
 
+    Customer queryByAccount(Integer account);
+
 }
 

@@ -6,6 +6,8 @@ import com.hbw.entity.Merchant;
 import com.hbw.service.MerchantService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * (Merchant)表服务实现类
  *
@@ -15,5 +17,14 @@ import org.springframework.stereotype.Service;
 @Service("merchantService")
 public class MerchantServiceImpl extends ServiceImpl<MerchantDao, Merchant> implements MerchantService {
 
+    @Resource
+    private MerchantDao mapper;
+
+    @Override
+    public Merchant queryByAccount(Integer account) {
+        Merchant merchant = mapper.queryByAccount(account);
+        return merchant;
+
+    }
 }
 

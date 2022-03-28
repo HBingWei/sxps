@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hbw.entity.Customer;
 import com.hbw.entity.Manager;
 import com.hbw.service.ManagerService;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +51,12 @@ public class ManagerController extends ApiController {
     @GetMapping("{id}")
     public R selectOne(@PathVariable Serializable id) {
         return success(this.managerService.getById(id));
+    }
+
+    @GetMapping("login/{account}")
+    public Manager queryByAccount(@PathVariable Integer account){
+        Manager manager = managerService.queryByAccount(account);
+        return manager;
     }
 
     /**

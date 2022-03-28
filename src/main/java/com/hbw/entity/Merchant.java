@@ -14,6 +14,8 @@ import java.io.Serializable;
 public class Merchant extends Model<Merchant> {
     
     private Integer id;
+
+    private Integer account;
     
     private String name;
     
@@ -29,6 +31,20 @@ public class Merchant extends Model<Merchant> {
     
     private Integer authid;
 
+    @Override
+    public String toString() {
+        return "Merchant{" +
+                "id=" + id +
+                ", account=" + account +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", lasttime=" + lasttime +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
+                ", sex=" + sex +
+                ", authid=" + authid +
+                '}';
+    }
 
     public Integer getId() {
         return id;
@@ -36,6 +52,15 @@ public class Merchant extends Model<Merchant> {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+
+    public Integer getAccount() {
+        return account;
+    }
+
+    public void setAccount(Integer account) {
+        this.account = account;
     }
 
     public String getName() {

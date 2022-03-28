@@ -11,5 +11,7 @@ import com.hbw.entity.Customer;
  */
 public interface CustomerDao extends BaseMapper<Customer> {
 
+    Customer queryByAccount(Integer account);
+
 }
 

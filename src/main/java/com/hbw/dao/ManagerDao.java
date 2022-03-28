@@ -11,5 +11,6 @@ import com.hbw.entity.Manager;
  */
 public interface ManagerDao extends BaseMapper<Manager> {
 
+    Manager queryByAccount(Integer account);
 }
 

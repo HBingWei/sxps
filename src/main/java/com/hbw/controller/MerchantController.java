@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hbw.entity.Customer;
 import com.hbw.entity.Merchant;
 import com.hbw.service.MerchantService;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +51,13 @@ public class MerchantController extends ApiController {
     @GetMapping("{id}")
     public R selectOne(@PathVariable Serializable id) {
         return success(this.merchantService.getById(id));
+    }
+
+    @GetMapping("login/{account}")
+    public Merchant queryByAccount(@PathVariable Integer account){
+        System.out.println("account="+account);
+        Merchant merchant = merchantService.queryByAccount(account);
+        return merchant;
     }
 
     /**

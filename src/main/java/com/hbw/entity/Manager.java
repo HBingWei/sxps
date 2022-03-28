@@ -14,6 +14,8 @@ import java.io.Serializable;
 public class Manager extends Model<Manager> {
     
     private Integer id;
+
+    private Integer account;
     
     private String name;
     
@@ -29,6 +31,20 @@ public class Manager extends Model<Manager> {
     
     private Integer authid;
 
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "id=" + id +
+                ", account=" + account +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", lasttime=" + lasttime +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
+                ", sex=" + sex +
+                ", authid=" + authid +
+                '}';
+    }
 
     public Integer getId() {
         return id;
@@ -36,6 +52,14 @@ public class Manager extends Model<Manager> {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getAccount() {
+        return account;
+    }
+
+    public void setAccount(Integer account) {
+        this.account = account;
     }
 
     public String getName() {

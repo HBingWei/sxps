@@ -41,15 +41,13 @@ public class CustomerController extends ApiController {
         return success(this.customerService.page(page, new QueryWrapper<>(customer)));
     }
 
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("{id}")
-    public R selectOne(@PathVariable Serializable id) {
-        return success(this.customerService.getById(id));
+
+
+
+    @GetMapping("login/{account}")
+    public Customer queryByAccount(@PathVariable Integer account){
+        Customer customer = customerService.queryByAccount(account);
+        return customer;
     }
 
     /**

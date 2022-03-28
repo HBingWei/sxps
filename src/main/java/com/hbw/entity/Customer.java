@@ -12,6 +12,8 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class Customer extends Model<Customer> {
+
+    private Integer account;
     
     private Integer id;
     
@@ -29,6 +31,28 @@ public class Customer extends Model<Customer> {
     
     private Integer authid;
 
+    public Integer getAccount() {
+        return account;
+    }
+
+    public void setAccount(Integer account) {
+        this.account = account;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "account=" + account +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", lasttime=" + lasttime +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
+                ", sex=" + sex +
+                ", authid=" + authid +
+                '}';
+    }
 
     public Integer getId() {
         return id;

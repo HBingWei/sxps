@@ -6,6 +6,8 @@ import com.hbw.entity.Customer;
 import com.hbw.service.CustomerService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * (Customer)表服务实现类
  *
@@ -15,5 +17,13 @@ import org.springframework.stereotype.Service;
 @Service("customerService")
 public class CustomerServiceImpl extends ServiceImpl<CustomerDao, Customer> implements CustomerService {
 
+    @Resource
+    private CustomerDao mapper;
+
+    @Override
+    public Customer queryByAccount(Integer account) {
+        Customer customer = mapper.queryByAccount(account);
+        return customer;
+    }
 }
 
