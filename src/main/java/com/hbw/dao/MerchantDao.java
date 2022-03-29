@@ -12,7 +12,5 @@ import com.hbw.entity.Merchant;
  */
 public interface MerchantDao extends BaseMapper<Merchant> {
 
-    Merchant queryByAccount(Integer account);
-
 }
 

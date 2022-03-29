@@ -11,8 +11,5 @@ import com.hbw.entity.Merchant;
  * @since 2022-03-26 13:45:26
  */
 public interface MerchantService extends IService<Merchant> {
-
-    Merchant queryByAccount(Integer account);
-
 }
 

@@ -1,5 +1,7 @@
 package com.hbw.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
 
@@ -11,7 +13,8 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class Orderdetail extends Model<Orderdetail> {
-    
+
+    @TableId(type = IdType.AUTO)
     private Integer id;
     
     private Integer goodsid;

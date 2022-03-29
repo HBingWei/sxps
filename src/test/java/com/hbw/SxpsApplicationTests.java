@@ -23,16 +23,6 @@ class SxpsApplicationTests {
     void contextLoads() {
     }
 
-    @Test
-    void testCustomerQueryByAccount(){
-        Customer customer = customerDao.queryByAccount(1001);
-        System.out.println("customer = " + customer);
-    }
 
-    @Test
-    void testMerchantQueryByAccount(){
-        Merchant merchant = merchantDao.queryByAccount(2001);
-        System.out.println("merchant = " + merchant);
-    }
 
 }

@@ -3,6 +3,8 @@ package com.hbw.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hbw.entity.Customer;
 
+import java.util.Date;
+
 /**
  * (Customer)表数据库访问层
  *
@@ -11,7 +13,7 @@ import com.hbw.entity.Customer;
  */
 public interface CustomerDao extends BaseMapper<Customer> {
 
-    Customer queryByAccount(Integer account);
+    int updateLastTime(Integer id, Date lasttime);
 
 }
 

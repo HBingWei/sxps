@@ -53,12 +53,6 @@ public class MerchantController extends ApiController {
         return success(this.merchantService.getById(id));
     }
 
-    @GetMapping("login/{account}")
-    public Merchant queryByAccount(@PathVariable Integer account){
-        System.out.println("account="+account);
-        Merchant merchant = merchantService.queryByAccount(account);
-        return merchant;
-    }
 
     /**
      * 新增数据
@@ -66,7 +60,7 @@ public class MerchantController extends ApiController {
      * @param merchant 实体对象
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("register")
     public R insert(@RequestBody Merchant merchant) {
         return success(this.merchantService.save(merchant));
     }

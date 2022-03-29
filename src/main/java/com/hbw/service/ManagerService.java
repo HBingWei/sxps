@@ -12,7 +12,5 @@ import com.hbw.entity.Manager;
  */
 public interface ManagerService extends IService<Manager> {
 
-    Manager queryByAccount(Integer account);
-
 }
 

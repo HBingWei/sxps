@@ -16,15 +16,5 @@ import javax.annotation.Resource;
  */
 @Service("merchantService")
 public class MerchantServiceImpl extends ServiceImpl<MerchantDao, Merchant> implements MerchantService {
-
-    @Resource
-    private MerchantDao mapper;
-
-    @Override
-    public Merchant queryByAccount(Integer account) {
-        Merchant merchant = mapper.queryByAccount(account);
-        return merchant;
-
-    }
 }
 

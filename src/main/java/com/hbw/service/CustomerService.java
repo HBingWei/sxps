@@ -3,6 +3,8 @@ package com.hbw.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hbw.entity.Customer;
 
+import java.util.Date;
+
 /**
  * (Customer)表服务接口
  *
@@ -11,7 +13,7 @@ import com.hbw.entity.Customer;
  */
 public interface CustomerService extends IService<Customer> {
 
-    Customer queryByAccount(Integer account);
+    int updateLastTime(Integer id, Date lasttime);
 
 }
 

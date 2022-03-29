@@ -1,6 +1,9 @@
 package com.hbw.entity;
 
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
 
@@ -12,10 +15,9 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class Merchant extends Model<Merchant> {
-    
-    private Integer id;
 
-    private Integer account;
+    @TableId(type = IdType.AUTO)
+    private Integer id;
     
     private String name;
     
@@ -35,7 +37,6 @@ public class Merchant extends Model<Merchant> {
     public String toString() {
         return "Merchant{" +
                 "id=" + id +
-                ", account=" + account +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", lasttime=" + lasttime +
@@ -52,15 +53,6 @@ public class Merchant extends Model<Merchant> {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-
-    public Integer getAccount() {
-        return account;
-    }
-
-    public void setAccount(Integer account) {
-        this.account = account;
     }
 
     public String getName() {

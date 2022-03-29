@@ -1,6 +1,9 @@
 package com.hbw.entity;
 
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
 
@@ -13,10 +16,9 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Customer extends Model<Customer> {
 
-    private Integer account;
-    
+    @TableId(type = IdType.AUTO)
     private Integer id;
-    
+
     private String name;
     
     private String password;
@@ -31,18 +33,12 @@ public class Customer extends Model<Customer> {
     
     private Integer authid;
 
-    public Integer getAccount() {
-        return account;
-    }
-
-    public void setAccount(Integer account) {
-        this.account = account;
+    public Customer() {
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-                "account=" + account +
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +

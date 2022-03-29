@@ -1,6 +1,9 @@
 package com.hbw.entity;
 
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
 
@@ -12,7 +15,8 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class Orderlist extends Model<Orderlist> {
-    
+
+    @TableId(type = IdType.AUTO)
     private Integer id;
     
     private Date date;

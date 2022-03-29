@@ -7,6 +7,7 @@ import com.hbw.service.CustomerService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * (Customer)表服务实现类
@@ -21,9 +22,8 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerDao, Customer> impl
     private CustomerDao mapper;
 
     @Override
-    public Customer queryByAccount(Integer account) {
-        Customer customer = mapper.queryByAccount(account);
-        return customer;
+    public int updateLastTime(Integer id, Date lasttime) {
+        return mapper.updateLastTime(id, lasttime);
     }
 }
 

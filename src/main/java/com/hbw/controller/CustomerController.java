@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +31,16 @@ public class CustomerController extends ApiController {
     private CustomerService customerService;
 
     /**
+     *  更新最近登录时间
+     */
+    @GetMapping("login/setLasttime/{id}/{lastTime}")
+    public int updateLastTime(@PathVariable Integer id,@PathVariable Date lastTime) {
+        int i = this.customerService.updateLastTime(id, lastTime);
+        System.out.println("i = " + i);
+        return i;
+    }
+
+    /**
      * 分页查询所有数据
      *
      * @param page 分页对象
@@ -41,13 +52,10 @@ public class CustomerController extends ApiController {
         return success(this.customerService.page(page, new QueryWrapper<>(customer)));
     }
 
+    @GetMapping("login/{id}")
+    public R selectOne(@PathVariable Serializable id) {
+        return success(this.customerService.getById(id));
 
-
-
-    @GetMapping("login/{account}")
-    public Customer queryByAccount(@PathVariable Integer account){
-        Customer customer = customerService.queryByAccount(account);
-        return customer;
     }
 
     /**
@@ -56,7 +64,7 @@ public class CustomerController extends ApiController {
      * @param customer 实体对象
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("register")
     public R insert(@RequestBody Customer customer) {
         return success(this.customerService.save(customer));
     }

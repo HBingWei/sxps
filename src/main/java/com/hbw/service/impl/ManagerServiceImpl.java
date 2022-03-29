@@ -18,14 +18,5 @@ import javax.annotation.Resource;
  */
 @Service("managerService")
 public class ManagerServiceImpl extends ServiceImpl<ManagerDao, Manager> implements ManagerService {
-
-    @Resource
-    private ManagerDao mapper;
-
-    @Override
-    public Manager queryByAccount(Integer account) {
-        Manager manager = mapper.queryByAccount(account);
-        return manager;
-    }
 }
 

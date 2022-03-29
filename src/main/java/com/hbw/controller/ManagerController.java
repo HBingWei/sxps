@@ -53,11 +53,6 @@ public class ManagerController extends ApiController {
         return success(this.managerService.getById(id));
     }
 
-    @GetMapping("login/{account}")
-    public Manager queryByAccount(@PathVariable Integer account){
-        Manager manager = managerService.queryByAccount(account);
-        return manager;
-    }
 
     /**
      * 新增数据
@@ -65,7 +60,7 @@ public class ManagerController extends ApiController {
      * @param manager 实体对象
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("register")
     public R insert(@RequestBody Manager manager) {
         return success(this.managerService.save(manager));
     }
