@@ -29,6 +29,18 @@ public class Goods extends Model<Goods> {
     
     private Integer storeid;
 
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", content='" + content + '\'' +
+                ", price=" + price +
+                ", state=" + state +
+                ", typeid=" + typeid +
+                ", storeid=" + storeid +
+                '}';
+    }
 
     public Integer getId() {
         return id;

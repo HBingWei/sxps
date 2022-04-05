@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hbw.entity.Manager;
 import com.hbw.entity.Merchant;
 
+import java.util.Date;
+
 /**
  * (Merchant)表数据库访问层
  *
@@ -11,6 +13,7 @@ import com.hbw.entity.Merchant;
  * @since 2022-03-26 13:45:26
  */
 public interface MerchantDao extends BaseMapper<Merchant> {
+    int updateLastTime(Integer id, Date lasttime);
 
 }
 

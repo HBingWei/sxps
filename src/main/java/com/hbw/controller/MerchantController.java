@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,9 +49,19 @@ public class MerchantController extends ApiController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("{id}")
+    @GetMapping("login/{id}")
     public R selectOne(@PathVariable Serializable id) {
         return success(this.merchantService.getById(id));
+    }
+
+    /**
+     *  更新最近登录时间
+     */
+    @GetMapping("login/setLasttime/{id}/{lastTime}")
+    public int updateLastTime(@PathVariable Integer id,@PathVariable Date lastTime) {
+        int i = this.merchantService.updateLastTime(id, lastTime);
+        System.out.println("i = " + i);
+        return i;
     }
 
 
@@ -61,8 +72,11 @@ public class MerchantController extends ApiController {
      * @return 新增结果
      */
     @PostMapping("register")
-    public R insert(@RequestBody Merchant merchant) {
-        return success(this.merchantService.save(merchant));
+    public Integer insert(@RequestBody Merchant merchant) {
+        if((this.merchantService.save(merchant))){
+            return merchant.getId();
+        }
+        return null;
     }
 
     /**

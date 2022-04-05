@@ -9,6 +9,7 @@ import com.hbw.service.ManagerService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * (Manager)表服务实现类
@@ -18,5 +19,13 @@ import javax.annotation.Resource;
  */
 @Service("managerService")
 public class ManagerServiceImpl extends ServiceImpl<ManagerDao, Manager> implements ManagerService {
+
+    @Resource
+    private ManagerDao mapper;
+
+    @Override
+    public int updateLastTime(Integer id, Date lasttime) {
+        return mapper.updateLastTime(id, lasttime);
+    }
 }
 

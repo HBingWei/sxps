@@ -1,8 +1,8 @@
 package com.hbw.controller;
 
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Goods)表控制层
@@ -29,10 +30,21 @@ public class GoodsController extends ApiController {
     @Resource
     private GoodsService goodsService;
 
+
+    @GetMapping("type/{typeid}")
+    public R selectByTypeId(@PathVariable Integer typeid) {
+        QueryWrapper<Goods> qw = new QueryWrapper<>();
+        qw.eq("typeid", typeid);
+        qw.last("limit 4");
+        List<Goods> list = goodsService.list(qw);
+        list.forEach(System.out::println);
+        return success(list);
+    }
+
     /**
      * 分页查询所有数据
      *
-     * @param page 分页对象
+     * @param page  分页对象
      * @param goods 查询实体
      * @return 所有数据
      */

@@ -54,6 +54,7 @@ public class CustomerController extends ApiController {
 
     @GetMapping("login/{id}")
     public R selectOne(@PathVariable Serializable id) {
+        System.out.println(success(this.customerService.getById(id)));
         return success(this.customerService.getById(id));
 
     }
@@ -62,11 +63,15 @@ public class CustomerController extends ApiController {
      * 新增数据
      *
      * @param customer 实体对象
-     * @return 新增结果
+     * @return 新增对象的id
      */
     @PostMapping("register")
-    public R insert(@RequestBody Customer customer) {
-        return success(this.customerService.save(customer));
+    public Integer insert(@RequestBody Customer customer) {
+        if((this.customerService.save(customer))){
+            System.out.println("customer.getId() = " + customer.getId());
+            return customer.getId();
+        }
+        return null;
     }
 
     /**

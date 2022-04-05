@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,9 +49,19 @@ public class ManagerController extends ApiController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("{id}")
+    @GetMapping("login/{id}")
     public R selectOne(@PathVariable Serializable id) {
         return success(this.managerService.getById(id));
+    }
+
+    /**
+     *  更新最近登录时间
+     */
+    @GetMapping("login/setLasttime/{id}/{lastTime}")
+    public int updateLastTime(@PathVariable Integer id,@PathVariable Date lastTime) {
+        int i = this.managerService.updateLastTime(id, lastTime);
+        System.out.println("i = " + i);
+        return i;
     }
 
 
