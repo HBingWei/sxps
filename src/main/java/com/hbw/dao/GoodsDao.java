@@ -2,6 +2,7 @@ package com.hbw.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hbw.entity.Goods;
+import com.hbw.entity.ProductAndStore;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @since 2022-03-26 13:45:25
  */
 public interface GoodsDao extends BaseMapper<Goods> {
-//    List<Goods> selectByTypeId(Integer id);
+
+    List<ProductAndStore> selectProductAndStoreByTypeId(Integer typeId, Integer current);
 }
 
