@@ -73,6 +73,23 @@ public class GoodsController extends ApiController {
         return success(this.goodsService.page(page, new QueryWrapper<>(goods)));
     }
 
+    @GetMapping("byStoreId/{storeId}/{current}")
+    public R selectProductsByStoreId(@PathVariable Integer storeId, @PathVariable Integer current){
+        QueryWrapper<Goods> qw = new QueryWrapper<>();
+        qw.eq("storeid", storeId);
+        IPage<Goods> page = new Page<>();
+        page.setSize(9);
+        page.setCurrent(current);
+        IPage<Goods> result = goodsService.page(page,qw);
+        return success(result);
+    }
+
+    /**
+     *
+     * @param typeid 商品类型
+     * @param current 当前页数
+     * @return 特定商品类型的指定页码的商品
+     */
     @GetMapping("typeSearchTwo/{typeid}/{current}")
     public R selectProductsByTypeId( @PathVariable Integer typeid, @PathVariable Integer current) {
         QueryWrapper<Goods> qw = new QueryWrapper<>();

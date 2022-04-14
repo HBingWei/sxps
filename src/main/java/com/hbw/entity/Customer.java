@@ -33,13 +33,15 @@ public class Customer extends Model<Customer> {
     
     private Integer authid;
 
+    private String address;
+
     public Customer() {
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-                ", id=" + id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", lasttime=" + lasttime +
@@ -47,6 +49,7 @@ public class Customer extends Model<Customer> {
                 ", email='" + email + '\'' +
                 ", sex=" + sex +
                 ", authid=" + authid +
+                ", address='" + address + '\'' +
                 '}';
     }
 
@@ -112,6 +115,14 @@ public class Customer extends Model<Customer> {
 
     public void setAuthid(Integer authid) {
         this.authid = authid;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     /**

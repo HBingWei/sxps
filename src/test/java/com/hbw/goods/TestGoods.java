@@ -20,6 +20,22 @@ public class TestGoods {
     private GoodsService goodsService;
 
     @Test
+    void testSelectGoodsByStoreId() {
+        int storeId = 1;
+        QueryWrapper<Goods> qw = new QueryWrapper<>();
+        qw.eq("storeid", storeId);
+        IPage<Goods> page = new Page<>();
+        page.setSize(9);
+        page.setCurrent(1);
+        IPage<Goods> result = goodsService.page(page, qw);
+        List<Goods> list = result.getRecords();
+        System.out.println("每页的数据量："+result.getSize());
+        System.out.println("总共的页数："+result.getPages());
+        System.out.println("总记录数："+result.getTotal());
+        System.out.println("当前页码："+result.getCurrent());
+    }
+
+    @Test
     void testSelectGoodsByTypeId() {
         int typeid = 1;
         QueryWrapper<Goods> qw = new QueryWrapper<>();

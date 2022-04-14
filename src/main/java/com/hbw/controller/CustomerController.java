@@ -74,6 +74,11 @@ public class CustomerController extends ApiController {
         return null;
     }
 
+    @PutMapping("updatePassword")
+    public R updatePassword(@RequestBody Customer customer) {
+        return success(this.customerService.updateById(customer));
+    }
+
     /**
      * 修改数据
      *
