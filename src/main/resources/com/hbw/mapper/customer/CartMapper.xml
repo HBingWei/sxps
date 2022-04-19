@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbw.dao.CartDao">
+
+    <select id="selectByCustomerId" resultType="com.hbw.entity.CartAndStore">
+       select
+              cart.id, cart.customerId, cart.storeId, cart.goodsId, cart.num, cart.price, cart.total, store.name as storeName, goods.name as goodsName
+       from
+            cart
+       left join
+                store
+       on
+           cart.storeid = store.id
+       left join
+                goods
+       on
+           cart.goodsid = goods.id
+       where
+             customerId=#{customerId}
+    </select>
+    
+    <update id="updateCart">
+        update cart set num = #{num}, total = #{total} where id = #{id}
+    </update>
+
+</mapper>
+
