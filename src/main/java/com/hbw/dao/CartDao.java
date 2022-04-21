@@ -1,6 +1,7 @@
 package com.hbw.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hbw.entity.Cart;
 import com.hbw.entity.CartAndStore;
 
 import java.util.List;
@@ -11,11 +12,13 @@ import java.util.List;
  * @author makejava
  * @since 2022-04-19 09:44:35
  */
-public interface CartDao extends BaseMapper<CartAndStore> {
+public interface CartDao extends BaseMapper<Cart> {
 
     List<CartAndStore> selectByCustomerId(Integer customerId);
 
     int updateCart(Integer num, Double total, Integer id);
+
+    int deleteById(Integer id);
 
 }
 

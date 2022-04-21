@@ -36,7 +36,7 @@ public class CartController extends ApiController {
      * @return 所有数据
      */
     @GetMapping
-    public R selectAll(Page<CartAndStore> page, CartAndStore cart) {
+    public R selectAll(Page<Cart> page, Cart cart) {
         return success(this.cartService.page(page, new QueryWrapper<>(cart)));
     }
 
@@ -70,7 +70,7 @@ public class CartController extends ApiController {
      * @return 新增结果
      */
     @PostMapping
-    public R insert(@RequestBody CartAndStore cart) {
+    public R insert(@RequestBody Cart cart) {
         return success(this.cartService.save(cart));
     }
 
@@ -80,14 +80,21 @@ public class CartController extends ApiController {
      * @param cart 实体对象
      * @return 修改结果
      */
-    @PutMapping
-    public R update(@RequestBody CartAndStore cart) {
+    @PutMapping("cartUpdate")
+    public R update(@RequestBody Cart cart) {
         return success(this.cartService.updateById(cart));
     }
+
 
     @PutMapping("updateCart/{num}/{total}/{id}")
     public R updateCart(@PathVariable Integer num, @PathVariable Double total, @PathVariable Integer id){
         return success(this.cartService.updateCart(num,total,id));
+    }
+
+
+    @DeleteMapping("deleteCart/{id}")
+    public R deleteById(@PathVariable Integer id){
+        return success(this.cartService.deleteById(id));
     }
 
     /**
