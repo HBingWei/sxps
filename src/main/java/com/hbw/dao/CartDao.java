@@ -20,5 +20,7 @@ public interface CartDao extends BaseMapper<Cart> {
 
     int deleteById(Integer id);
 
+    Cart selectByCustomerIdAndGoodsId(Integer customerid, Integer goodsid, Integer storeid);
+
 }
 

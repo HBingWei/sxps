@@ -20,15 +20,57 @@ public class Orderdetail extends Model<Orderdetail> {
     private Integer goodsid;
     
     private String goodsname;
+
+    private Double goodsprice;
     
     private Integer number;
     
-    private Double subtotal;
-    
     private Double total;
+
+    private Integer custid;
+
+    private Integer storeid;
     
     private Integer orderid;
 
+    @Override
+    public String toString() {
+        return "Orderdetail{" +
+                "id=" + id +
+                ", goodsid=" + goodsid +
+                ", goodsname='" + goodsname + '\'' +
+                ", goodsprice=" + goodsprice +
+                ", number=" + number +
+                ", total=" + total +
+                ", custid=" + custid +
+                ", storeid=" + storeid +
+                ", orderid=" + orderid +
+                '}';
+    }
+
+    public Double getGoodsprice() {
+        return goodsprice;
+    }
+
+    public void setGoodsprice(Double goodsprice) {
+        this.goodsprice = goodsprice;
+    }
+
+    public Integer getCustid() {
+        return custid;
+    }
+
+    public void setCustid(Integer custid) {
+        this.custid = custid;
+    }
+
+    public Integer getStoreid() {
+        return storeid;
+    }
+
+    public void setStoreid(Integer storeid) {
+        this.storeid = storeid;
+    }
 
     public Integer getId() {
         return id;
@@ -60,14 +102,6 @@ public class Orderdetail extends Model<Orderdetail> {
 
     public void setNumber(Integer number) {
         this.number = number;
-    }
-
-    public Double getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(Double subtotal) {
-        this.subtotal = subtotal;
     }
 
     public Double getTotal() {

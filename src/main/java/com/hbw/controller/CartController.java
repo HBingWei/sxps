@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hbw.entity.Cart;
-import com.hbw.entity.CartAndStore;
 import com.hbw.service.CartService;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +41,7 @@ public class CartController extends ApiController {
 
     /**
      * 根据用户id来返回个人购物车数据
+     *
      * @param customerId 顾客id
      * @return 购物车中数据
      */
@@ -49,7 +49,6 @@ public class CartController extends ApiController {
     public R selectByUserId(@PathVariable Integer customerId) {
         return success(this.cartService.selectByCustomerId(customerId));
     }
-
 
 
     /**
@@ -63,13 +62,27 @@ public class CartController extends ApiController {
         return success(this.cartService.getById(id));
     }
 
+
+    /**
+     * 通过传来的参数判断该商品是否已经在这个顾客的购物车中。
+     *
+     * @param customerid 顾客id
+     * @param goodsid    商品id
+     * @param storeid    商店id
+     * @return 如果成功，返回该商品，如果失败，返回
+     */
+    @GetMapping("selectByCustIdAndGoodsId/{customerid}/{goodsid}/{storeid}")
+    public R selectByCustIdAndGoodsId(@PathVariable Integer customerid, @PathVariable Integer goodsid, @PathVariable Integer storeid) {
+        return success(this.cartService.selectByCustomerIdAndGoodsId(customerid, goodsid, storeid));
+    }
+
     /**
      * 新增数据
      *
      * @param cart 实体对象
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("insert")
     public R insert(@RequestBody Cart cart) {
         return success(this.cartService.save(cart));
     }
@@ -87,23 +100,24 @@ public class CartController extends ApiController {
 
 
     @PutMapping("updateCart/{num}/{total}/{id}")
-    public R updateCart(@PathVariable Integer num, @PathVariable Double total, @PathVariable Integer id){
-        return success(this.cartService.updateCart(num,total,id));
+    public R updateCart(@PathVariable Integer num, @PathVariable Double total, @PathVariable Integer id) {
+        return success(this.cartService.updateCart(num, total, id));
     }
 
 
     @DeleteMapping("deleteCart/{id}")
-    public R deleteById(@PathVariable Integer id){
+    public R deleteById(@PathVariable Integer id) {
         return success(this.cartService.deleteById(id));
     }
 
     /**
      * 删除数据
      *
-     * @param idList 主键结合
+     * @param idList 主键集合
      * @return 删除结果
      */
-    @DeleteMapping
+    @DeleteMapping("deleteCheckedProducts")
+    @ResponseBody
     public R delete(@RequestParam("idList") List<Long> idList) {
         return success(this.cartService.removeByIds(idList));
     }

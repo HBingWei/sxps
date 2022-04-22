@@ -58,7 +58,7 @@ public class OrderdetailController extends ApiController {
      * @param orderdetail 实体对象
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("insert")
     public R insert(@RequestBody Orderdetail orderdetail) {
         return success(this.orderdetailService.save(orderdetail));
     }

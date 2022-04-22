@@ -11,5 +11,7 @@ import com.hbw.entity.Orderlist;
  */
 public interface OrderlistDao extends BaseMapper<Orderlist> {
 
+    int insertOrder(Orderlist orderlist);
+
 }
 

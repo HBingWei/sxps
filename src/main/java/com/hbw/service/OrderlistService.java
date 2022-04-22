@@ -11,5 +11,7 @@ import com.hbw.entity.Orderlist;
  */
 public interface OrderlistService extends IService<Orderlist> {
 
+    int insertOrder(Orderlist orderlist);
+
 }
 

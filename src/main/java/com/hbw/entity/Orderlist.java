@@ -22,12 +22,16 @@ public class Orderlist extends Model<Orderlist> {
     private Date date;
     
     private Integer custid;
-    
-    private Integer merid;
-    
-    private String note;
-    
-    private Integer state;
+
+
+    @Override
+    public String toString() {
+        return "Orderlist{" +
+                "id=" + id +
+                ", date=" + date +
+                ", custid=" + custid +
+                '}';
+    }
 
 
     public Integer getId() {
@@ -54,29 +58,6 @@ public class Orderlist extends Model<Orderlist> {
         this.custid = custid;
     }
 
-    public Integer getMerid() {
-        return merid;
-    }
-
-    public void setMerid(Integer merid) {
-        this.merid = merid;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
-    }
 
     /**
      * 获取主键值

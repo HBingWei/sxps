@@ -6,6 +6,8 @@ import com.hbw.entity.Orderlist;
 import com.hbw.service.OrderlistService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * (Orderlist)表服务实现类
  *
@@ -14,6 +16,13 @@ import org.springframework.stereotype.Service;
  */
 @Service("orderlistService")
 public class OrderlistServiceImpl extends ServiceImpl<OrderlistDao, Orderlist> implements OrderlistService {
+
+    @Resource
+    private OrderlistDao mapper;
+
+    public int insertOrder(Orderlist orderlist){
+        return mapper.insertOrder(orderlist);
+    }
 
 }
 

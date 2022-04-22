@@ -29,12 +29,17 @@ public class CartServiceImpl extends ServiceImpl<CartDao, Cart> implements CartS
 
     @Override
     public int updateCart(Integer num, Double total, Integer id) {
-        return mapper.updateCart(num,total,id);
+        return mapper.updateCart(num, total, id);
     }
 
     @Override
     public int deleteById(Integer id) {
         return mapper.deleteById(id);
+    }
+
+    @Override
+    public Cart selectByCustomerIdAndGoodsId(Integer customerid, Integer goodsid, Integer storeid) {
+        return mapper.selectByCustomerIdAndGoodsId(customerid, goodsid, storeid);
     }
 }
 

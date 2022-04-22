@@ -52,15 +52,23 @@ public class OrderlistController extends ApiController {
         return success(this.orderlistService.getById(id));
     }
 
+
     /**
      * 新增数据
      *
      * @param orderlist 实体对象
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("insertOrderList")
     public R insert(@RequestBody Orderlist orderlist) {
         return success(this.orderlistService.save(orderlist));
+    }
+
+    @PostMapping("insertOrder")
+    public int insertOrder(@RequestBody Orderlist orderlist) {
+        this.orderlistService.insertOrder(orderlist);
+        System.out.println("orderList.id = " + orderlist.getId());
+        return orderlist.getId();
     }
 
     /**

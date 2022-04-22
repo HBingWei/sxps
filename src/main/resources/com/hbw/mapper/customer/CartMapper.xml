@@ -5,29 +5,47 @@
 <mapper namespace="com.hbw.dao.CartDao">
 
     <select id="selectByCustomerId" resultType="com.hbw.entity.CartAndStore">
-       select
-              cart.id, cart.customerId, cart.storeId, cart.goodsId, cart.num, cart.price, cart.total, store.name as storeName, goods.name as goodsName
-       from
-            cart
-       left join
-                store
-       on
-           cart.storeid = store.id
-       left join
-                goods
-       on
-           cart.goodsid = goods.id
-       where
-             customerId=#{customerId}
+        select cart.id,
+               cart.customerid,
+               cart.storeid,
+               cart.goodsid,
+               cart.num,
+               cart.price,
+               cart.total,
+               store.name as storeName,
+               goods.name as goodsName
+        from cart
+                 left join
+             store
+             on
+                 cart.storeid = store.id
+                 left join
+             goods
+             on
+                 cart.goodsid = goods.id
+        where customerId = #{customerId}
     </select>
-    
+
     <update id="updateCart">
-        update cart set num = #{num}, total = #{total} where id = #{id}
+        update cart
+        set num   = #{num},
+            total = #{total}
+        where id = #{id}
     </update>
 
     <delete id="deleteById">
-        delete from cart where id = #{id}
+        delete
+        from cart
+        where id = #{id}
     </delete>
+
+    <select id="selectByCustomerIdAndGoodsId" resultType="com.hbw.entity.Cart">
+        select id, customerid, storeid, goodsid, num, price, total
+        from cart
+        where customerid = #{customerid}
+          and goodsid = #{goodsid}
+          and storeid = #{storeid}
+    </select>
 
 
 </mapper>
