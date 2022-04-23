@@ -85,7 +85,7 @@ public class CustomerController extends ApiController {
      * @param customer 实体对象
      * @return 修改结果
      */
-    @PutMapping
+    @PutMapping("updateInfo")
     public R update(@RequestBody Customer customer) {
         return success(this.customerService.updateById(customer));
     }
