@@ -3,6 +3,8 @@ package com.hbw.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hbw.entity.Orderlist;
 
+import java.util.List;
+
 /**
  * (Orderlist)表数据库访问层
  *
@@ -12,6 +14,8 @@ import com.hbw.entity.Orderlist;
 public interface OrderlistDao extends BaseMapper<Orderlist> {
 
     int insertOrder(Orderlist orderlist);
+
+    List<Orderlist> selectByCustId(Integer custid);
 
 }
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbw.dao.OrderdetailDao">
+
+    <select id="getByOrderId" resultType="com.hbw.entity.Orderdetail">
+        select id,
+               goodsid,
+               goodsname,
+               goodsprice,
+               number,
+               total,
+               custid,
+               storeid,
+               orderid
+        from orderdetail
+        where orderid = #{orderid}
+    </select>
+
+    <select id="getByOrderDetailId" resultType="com.hbw.entity.ProductAndStore">
+        select orderdetail.id,
+               orderdetail.goodsid,
+               orderdetail.goodsname as name,
+               orderdetail.goodsprice as price,
+               orderdetail.number,
+               orderdetail.total,
+               orderdetail.storeid,
+               goods.content,
+               goods.state,
+               store.name as storeName,
+               store.address as storeAddress
+        from orderdetail
+                 left join goods on orderdetail.goodsid = goods.id
+                 left join store on orderdetail.storeid = store.id
+        where orderdetail.id = #{id}
+    </select>
+
+</mapper>
+

@@ -9,13 +9,17 @@ public class ProductAndStore {
 
     private Double price;
 
-    private Integer state;
+    private Integer number;
 
-    private Integer typeid;
+    private Double total;
+
+    private Integer state;
 
     private Integer storeid;
 
     private String storeName;
+
+    private String storeAddress;
 
     @Override
     public String toString() {
@@ -24,11 +28,37 @@ public class ProductAndStore {
                 ", name='" + name + '\'' +
                 ", content='" + content + '\'' +
                 ", price=" + price +
+                ", number=" + number +
+                ", total=" + total +
                 ", state=" + state +
-                ", typeid=" + typeid +
                 ", storeid=" + storeid +
                 ", storeName='" + storeName + '\'' +
+                ", storeAddress='" + storeAddress + '\'' +
                 '}';
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public String getStoreAddress() {
+        return storeAddress;
+    }
+
+    public void setStoreAddress(String storeAddress) {
+        this.storeAddress = storeAddress;
     }
 
     public Integer getId() {
@@ -69,14 +99,6 @@ public class ProductAndStore {
 
     public void setState(Integer state) {
         this.state = state;
-    }
-
-    public Integer getTypeid() {
-        return typeid;
-    }
-
-    public void setTypeid(Integer typeid) {
-        this.typeid = typeid;
     }
 
     public Integer getStoreid() {

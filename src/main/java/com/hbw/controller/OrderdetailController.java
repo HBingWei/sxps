@@ -52,6 +52,29 @@ public class OrderdetailController extends ApiController {
         return success(this.orderdetailService.getById(id));
     }
 
+
+    @GetMapping("getByOrderId/{orderId}")
+    public R getByOrderId(@PathVariable Integer orderId){
+        return success(this.orderdetailService.getByOrderId(orderId));
+    }
+
+    @GetMapping("getOrderDetail/{id}")
+    public R getByOrderDetailId(@PathVariable Integer id){
+        return success(this.orderdetailService.getByOrderDetailId(id));
+    }
+
+
+    /**
+     *  通过主键集合批量查询数据
+     * @param idList 主键集合
+     * @return 查询结果
+     */
+    @GetMapping("getByOrderDetailIds")
+    @ResponseBody
+    public  R getByOrderDetailIds(@RequestParam("idList") List<Long> idList) {
+        return success(this.orderdetailService.listByIds(idList));
+    }
+
     /**
      * 新增数据
      *
@@ -62,6 +85,7 @@ public class OrderdetailController extends ApiController {
     public R insert(@RequestBody Orderdetail orderdetail) {
         return success(this.orderdetailService.save(orderdetail));
     }
+
 
     /**
      * 修改数据

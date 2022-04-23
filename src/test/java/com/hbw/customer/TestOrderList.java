@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 @SpringBootTest
 public class TestOrderList {
@@ -31,5 +32,11 @@ public class TestOrderList {
         int res = service.insertOrder(orderlist);
         System.out.println("orderList.id = " + orderlist.getId());
         System.out.println("res = " + res);
+    }
+
+    @Test
+    void testSelectByCustId(){
+        List<Orderlist> list = service.selectByCustId(10001);
+        System.out.println("list = " + list);
     }
 }

@@ -52,6 +52,11 @@ public class OrderlistController extends ApiController {
         return success(this.orderlistService.getById(id));
     }
 
+    @GetMapping("selectByCustId/{custid}")
+    public R selectByCustId(@PathVariable Integer custid){
+        return success(this.orderlistService.selectByCustId(custid));
+    }
+
 
     /**
      * 新增数据

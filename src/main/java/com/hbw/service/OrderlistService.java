@@ -3,6 +3,8 @@ package com.hbw.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hbw.entity.Orderlist;
 
+import java.util.List;
+
 /**
  * (Orderlist)表服务接口
  *
@@ -12,6 +14,8 @@ import com.hbw.entity.Orderlist;
 public interface OrderlistService extends IService<Orderlist> {
 
     int insertOrder(Orderlist orderlist);
+
+    List<Orderlist> selectByCustId(Integer custid);
 
 }
 

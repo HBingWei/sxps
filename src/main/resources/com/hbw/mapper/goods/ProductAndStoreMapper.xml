@@ -5,12 +5,19 @@
 <mapper namespace="com.hbw.dao.GoodsDao">
 
     <select id="selectProductAndStoreByTypeId" resultType="com.hbw.entity.ProductAndStore">
-        select goods.id, goods.name, goods.content, goods.price, goods.state, goods.typeid, goods.storeid, store.name as storeName
+        select goods.id,
+               goods.name,
+               goods.content,
+               goods.price,
+               goods.state,
+               goods.typeid,
+               goods.storeid,
+               store.name as storeName
         from goods
-        left join store
-        on goods.storeid = store.id
-        where goods.typeid=#{typeId}
-        limit #{current},9
+                 left join store
+                           on goods.storeid = store.id
+        where goods.typeid = #{typeId} limit #{current}
+            , 9
     </select>
 
 </mapper>

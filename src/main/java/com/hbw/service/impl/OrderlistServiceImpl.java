@@ -7,6 +7,7 @@ import com.hbw.service.OrderlistService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Orderlist)表服务实现类
@@ -22,6 +23,10 @@ public class OrderlistServiceImpl extends ServiceImpl<OrderlistDao, Orderlist> i
 
     public int insertOrder(Orderlist orderlist){
         return mapper.insertOrder(orderlist);
+    }
+
+    public List<Orderlist> selectByCustId(Integer custid){
+        return mapper.selectByCustId(custid);
     }
 
 }
