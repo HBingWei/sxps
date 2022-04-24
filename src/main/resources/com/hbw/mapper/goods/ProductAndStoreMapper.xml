@@ -12,6 +12,7 @@
                goods.state,
                goods.typeid,
                goods.storeid,
+               goods.stock,
                store.name as storeName
         from goods
                  left join store

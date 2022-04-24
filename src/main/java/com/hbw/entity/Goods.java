@@ -29,6 +29,8 @@ public class Goods extends Model<Goods> {
     
     private Integer storeid;
 
+    private Integer stock;
+
     @Override
     public String toString() {
         return "Goods{" +
@@ -39,7 +41,16 @@ public class Goods extends Model<Goods> {
                 ", state=" + state +
                 ", typeid=" + typeid +
                 ", storeid=" + storeid +
+                ", stock=" + stock +
                 '}';
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
     public Integer getId() {

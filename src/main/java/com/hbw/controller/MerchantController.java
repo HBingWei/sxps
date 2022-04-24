@@ -85,7 +85,7 @@ public class MerchantController extends ApiController {
      * @param merchant 实体对象
      * @return 修改结果
      */
-    @PutMapping
+    @PutMapping("update")
     public R update(@RequestBody Merchant merchant) {
         return success(this.merchantService.updateById(merchant));
     }

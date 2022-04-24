@@ -41,6 +41,11 @@ public class StoreController extends ApiController {
         return success(this.storeService.page(page, new QueryWrapper<>(store)));
     }
 
+    @GetMapping("getByMerId/{merid}")
+    public List<Store> getByMerId(@PathVariable Integer merid) {
+        return this.storeService.getByMerId(merid);
+    }
+
     /**
      * 通过主键查询单条数据
      *
@@ -58,7 +63,7 @@ public class StoreController extends ApiController {
      * @param store 实体对象
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("addStore")
     public R insert(@RequestBody Store store) {
         return success(this.storeService.save(store));
     }
@@ -69,7 +74,7 @@ public class StoreController extends ApiController {
      * @param store 实体对象
      * @return 修改结果
      */
-    @PutMapping
+    @PutMapping("updateStore")
     public R update(@RequestBody Store store) {
         return success(this.storeService.updateById(store));
     }

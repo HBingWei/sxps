@@ -74,7 +74,7 @@ public class CustomerController extends ApiController {
         return null;
     }
 
-    @PutMapping("updatePassword")
+    @PutMapping("update")
     public R updatePassword(@RequestBody Customer customer) {
         return success(this.customerService.updateById(customer));
     }

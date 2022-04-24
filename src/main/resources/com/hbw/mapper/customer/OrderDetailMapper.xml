@@ -28,6 +28,7 @@
                orderdetail.storeid,
                goods.content,
                goods.state,
+               goods.stock,
                store.name as storeName,
                store.address as storeAddress
         from orderdetail
