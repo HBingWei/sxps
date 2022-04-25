@@ -89,5 +89,10 @@ public class StoreController extends ApiController {
     public R delete(@RequestParam("idList") List<Long> idList) {
         return success(this.storeService.removeByIds(idList));
     }
+
+    @DeleteMapping("deleteById/{id}")
+    public boolean deleteById(@PathVariable Integer id) {
+        return this.storeService.removeById(id);
+    }
 }
 

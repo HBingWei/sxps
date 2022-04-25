@@ -15,5 +15,9 @@ import java.util.List;
 public interface GoodsDao extends BaseMapper<Goods> {
 
     List<ProductAndStore> selectProductAndStoreByTypeId(Integer typeId, Integer current);
+
+    List<Integer> getGoodsIdsByStoreId(Integer storeid);
+
+    List<Goods> getGoodsByStoreId(Integer storeid);
 }
 

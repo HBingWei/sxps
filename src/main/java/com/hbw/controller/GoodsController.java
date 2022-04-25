@@ -119,6 +119,16 @@ public class GoodsController extends ApiController {
         return success(this.goodsService.getById(id));
     }
 
+    @GetMapping("getGoodsIdsByStoreId/{storeid}")
+    public List<Integer> getGoodsIdsByStoreId(@PathVariable Integer storeid) {
+        return this.goodsService.getGoodsIdsByStoreId(storeid);
+    }
+
+    @GetMapping("getGoodsByStoreId/{storeid}")
+    public List<Goods> getGoodsByStoreId(@PathVariable Integer storeid) {
+        return this.goodsService.getGoodsByStoreId(storeid);
+    }
+
     /**
      * 新增数据
      *
@@ -136,9 +146,14 @@ public class GoodsController extends ApiController {
      * @param goods 实体对象
      * @return 修改结果
      */
-    @PutMapping
+    @PutMapping("updateGoods")
     public R update(@RequestBody Goods goods) {
         return success(this.goodsService.updateById(goods));
+    }
+
+    @DeleteMapping("deleteById/{id}")
+    public boolean deleteById(@PathVariable Integer id) {
+        return this.goodsService.removeById(id);
     }
 
     /**
@@ -147,7 +162,8 @@ public class GoodsController extends ApiController {
      * @param idList 主键结合
      * @return 删除结果
      */
-    @DeleteMapping
+    @DeleteMapping("deleteGoodsByStoreId")
+    @ResponseBody
     public R delete(@RequestParam("idList") List<Long> idList) {
         return success(this.goodsService.removeByIds(idList));
     }

@@ -16,5 +16,9 @@ public interface GoodsService extends IService<Goods> {
 
     List<ProductAndStore> selectProductAndStoreByTypeId(Integer typeId,Integer current);
 
+    List<Integer> getGoodsIdsByStoreId(Integer storeid);
+
+    List<Goods> getGoodsByStoreId(Integer storeid);
+
 }
 

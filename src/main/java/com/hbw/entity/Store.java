@@ -23,7 +23,7 @@ public class Store extends Model<Store> {
     
     private String address;
     
-    private Integer tel;
+    private String tel;
     
     private String about;
 
@@ -60,11 +60,11 @@ public class Store extends Model<Store> {
         this.address = address;
     }
 
-    public Integer getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(Integer tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 

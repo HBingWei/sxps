@@ -27,5 +27,15 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsDao, Goods> implements Go
     public List<ProductAndStore> selectProductAndStoreByTypeId(Integer typeId, Integer current) {
         return mapper.selectProductAndStoreByTypeId(typeId,((current-1)*9));
     }
+
+    @Override
+    public List<Integer> getGoodsIdsByStoreId(Integer storeid){
+        return mapper.getGoodsIdsByStoreId(storeid);
+    }
+
+    @Override
+    public List<Goods> getGoodsByStoreId(Integer storeid) {
+        return mapper.getGoodsByStoreId(storeid);
+    }
 }
 
