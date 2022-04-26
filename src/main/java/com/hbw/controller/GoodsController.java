@@ -135,7 +135,7 @@ public class GoodsController extends ApiController {
      * @param goods 实体对象
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("insert")
     public R insert(@RequestBody Goods goods) {
         return success(this.goodsService.save(goods));
     }
