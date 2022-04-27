@@ -5,6 +5,7 @@ import com.hbw.entity.Manager;
 import com.hbw.entity.Merchant;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * (Merchant)表数据库访问层
@@ -14,6 +15,8 @@ import java.util.Date;
  */
 public interface MerchantDao extends BaseMapper<Merchant> {
     int updateLastTime(Integer id, Date lasttime);
+
+    List<Merchant> getAll();
 
 }
 

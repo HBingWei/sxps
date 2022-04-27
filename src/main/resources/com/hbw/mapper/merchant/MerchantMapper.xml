@@ -4,9 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hbw.dao.MerchantDao">
 
-    <update id="updateLastTime" >
-        update merchant set lasttime = #{lasttime} where id = #{id}
+    <update id="updateLastTime">
+        update merchant
+        set lasttime = #{lasttime}
+        where id = #{id}
     </update>
+
+    <select id="getAll" resultType="com.hbw.entity.Merchant">
+        select *
+        from merchant
+    </select>
 
 </mapper>
 

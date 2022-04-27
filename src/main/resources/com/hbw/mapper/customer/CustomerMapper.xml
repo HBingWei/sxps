@@ -10,5 +10,10 @@
         where id = #{id}
     </update>
 
+    <select id="getAll" resultType="com.hbw.entity.Customer">
+        select *
+        from customer
+    </select>
+
 </mapper>
 

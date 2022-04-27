@@ -82,7 +82,7 @@ public class ManagerController extends ApiController {
      * @param manager 实体对象
      * @return 修改结果
      */
-    @PutMapping
+    @PutMapping("update")
     public R update(@RequestBody Manager manager) {
         return success(this.managerService.updateById(manager));
     }

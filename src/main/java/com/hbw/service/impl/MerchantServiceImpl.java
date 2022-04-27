@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * (Merchant)表服务实现类
@@ -25,6 +26,11 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantDao, Merchant> impl
     @Override
     public int updateLastTime(Integer id, Date lasttime) {
         return mapper.updateLastTime(id, lasttime);
+    }
+
+    @Override
+    public List<Merchant> getAll(){
+         return mapper.getAll();
     }
 }
 

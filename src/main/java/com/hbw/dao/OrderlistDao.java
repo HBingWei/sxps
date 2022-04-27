@@ -17,5 +17,7 @@ public interface OrderlistDao extends BaseMapper<Orderlist> {
 
     List<Orderlist> selectByCustId(Integer custid);
 
+    List<Orderlist> selectByStoreId(Integer storeid);
+
 }
 

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.hbw.entity.Customer;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * (Customer)表服务接口
@@ -14,6 +15,8 @@ import java.util.Date;
 public interface CustomerService extends IService<Customer> {
 
     int updateLastTime(Integer id, Date lasttime);
+
+    List<Customer> getAll();
 
 }
 

@@ -56,7 +56,11 @@ public class CustomerController extends ApiController {
     public R selectOne(@PathVariable Serializable id) {
         System.out.println(success(this.customerService.getById(id)));
         return success(this.customerService.getById(id));
+    }
 
+    @GetMapping("getAll")
+    public List<Customer> getAll() {
+        return this.customerService.getAll();
     }
 
     /**
@@ -88,6 +92,13 @@ public class CustomerController extends ApiController {
     @PutMapping("updateInfo")
     public R update(@RequestBody Customer customer) {
         return success(this.customerService.updateById(customer));
+    }
+
+
+
+    @DeleteMapping("delete/{id}")
+    public boolean deleteById(@PathVariable Integer id) {
+        return this.customerService.removeById(id);
     }
 
     /**

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hbw.entity.Customer;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * (Customer)表数据库访问层
@@ -14,6 +15,8 @@ import java.util.Date;
 public interface CustomerDao extends BaseMapper<Customer> {
 
     int updateLastTime(Integer id, Date lasttime);
+
+    List<Customer> getAll();
 
 }
 
