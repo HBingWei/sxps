@@ -18,5 +18,7 @@ public interface OrderdetailService extends IService<Orderdetail> {
 
     ProductAndStore getByOrderDetailId(Integer id);
 
+    List<Orderdetail> getByStoreId(Integer storeid);
+
 }
 

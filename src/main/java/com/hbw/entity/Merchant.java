@@ -33,6 +33,8 @@ public class Merchant extends Model<Merchant> {
     
     private Integer authid;
 
+    private String state;
+
     @Override
     public String toString() {
         return "Merchant{" +
@@ -44,7 +46,16 @@ public class Merchant extends Model<Merchant> {
                 ", email='" + email + '\'' +
                 ", sex=" + sex +
                 ", authid=" + authid +
+                ", state='" + state + '\'' +
                 '}';
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public Integer getId() {

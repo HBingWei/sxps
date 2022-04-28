@@ -13,7 +13,7 @@ public class ProductAndStore {
 
     private Double total;
 
-    private Integer state;
+    private String state;
 
     private Integer storeid;
 
@@ -30,7 +30,7 @@ public class ProductAndStore {
                 ", price=" + price +
                 ", number=" + number +
                 ", total=" + total +
-                ", state=" + state +
+                ", state='" + state + '\'' +
                 ", storeid=" + storeid +
                 ", storeName='" + storeName + '\'' +
                 ", storeAddress='" + storeAddress + '\'' +
@@ -93,11 +93,11 @@ public class ProductAndStore {
         this.price = price;
     }
 
-    public Integer getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(String state) {
         this.state = state;
     }
 

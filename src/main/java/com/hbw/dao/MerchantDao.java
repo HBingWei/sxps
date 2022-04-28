@@ -18,5 +18,7 @@ public interface MerchantDao extends BaseMapper<Merchant> {
 
     List<Merchant> getAll();
 
+    int updateMerchantState(Integer id,String state);
+
 }
 

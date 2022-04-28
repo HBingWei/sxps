@@ -151,6 +151,11 @@ public class GoodsController extends ApiController {
         return success(this.goodsService.updateById(goods));
     }
 
+    @PutMapping("updateProducts")
+    public boolean update(@RequestParam("list") List<Goods> list) {
+        return this.goodsService.updateBatchById(list);
+    }
+
     @DeleteMapping("deleteById/{id}")
     public boolean deleteById(@PathVariable Integer id) {
         return this.goodsService.removeById(id);

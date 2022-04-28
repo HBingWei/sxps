@@ -18,5 +18,7 @@ public interface MerchantService extends IService<Merchant> {
     int updateLastTime(Integer id, Date lasttime);
 
     List<Merchant> getAll();
+
+    int updateMerchantState(Integer id,String state);
 }
 

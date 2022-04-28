@@ -23,7 +23,7 @@ public class Goods extends Model<Goods> {
     
     private Double price;
     
-    private Integer state;
+    private String state;
     
     private Integer typeid;
     
@@ -38,7 +38,7 @@ public class Goods extends Model<Goods> {
                 ", name='" + name + '\'' +
                 ", content='" + content + '\'' +
                 ", price=" + price +
-                ", state=" + state +
+                ", state='" + state + '\'' +
                 ", typeid=" + typeid +
                 ", storeid=" + storeid +
                 ", stock=" + stock +
@@ -85,11 +85,11 @@ public class Goods extends Model<Goods> {
         this.price = price;
     }
 
-    public Integer getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(String state) {
         this.state = state;
     }
 

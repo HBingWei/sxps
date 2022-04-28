@@ -18,5 +18,7 @@ public interface OrderdetailDao extends BaseMapper<Orderdetail> {
 
     ProductAndStore getByOrderDetailId(Integer id);
 
+    List<Orderdetail> getByStoreId(Integer storeid);
+
 }
 

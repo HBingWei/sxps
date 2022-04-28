@@ -79,6 +79,12 @@ public class StoreController extends ApiController {
         return success(this.storeService.updateById(store));
     }
 
+    @PutMapping("updateStoresList")
+    @ResponseBody
+    public boolean updateStoreList(@RequestParam("list") List<Store> list) {
+        return this.storeService.updateBatchById(list);
+    }
+
     /**
      * 删除数据
      *

@@ -21,7 +21,7 @@
     <select id="getByOrderDetailId" resultType="com.hbw.entity.ProductAndStore">
         select orderdetail.id,
                orderdetail.goodsid,
-               orderdetail.goodsname as name,
+               orderdetail.goodsname  as name,
                orderdetail.goodsprice as price,
                orderdetail.number,
                orderdetail.total,
@@ -29,12 +29,26 @@
                goods.content,
                goods.state,
                goods.stock,
-               store.name as storeName,
-               store.address as storeAddress
+               store.name             as storeName,
+               store.address          as storeAddress
         from orderdetail
                  left join goods on orderdetail.goodsid = goods.id
                  left join store on orderdetail.storeid = store.id
         where orderdetail.id = #{id}
+    </select>
+
+    <select id="getByStoreId" resultType="com.hbw.entity.Orderdetail">
+        select id,
+               goodsid,
+               goodsname,
+               goodsprice,
+               number,
+               total,
+               custid,
+               storeid,
+               orderid
+        from orderdetail
+        where orderid = #{storeid}
     </select>
 
 </mapper>

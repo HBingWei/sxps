@@ -32,5 +32,10 @@ public class MerchantServiceImpl extends ServiceImpl<MerchantDao, Merchant> impl
     public List<Merchant> getAll(){
          return mapper.getAll();
     }
+
+    @Override
+    public int updateMerchantState(Integer id,String state){
+        return mapper.updateMerchantState(id, state);
+    }
 }
 

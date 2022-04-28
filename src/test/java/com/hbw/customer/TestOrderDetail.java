@@ -32,7 +32,7 @@ public class TestOrderDetail {
 
     @Test
     void testGetByOrderId(){
-        List<Orderdetail> list = service.getByOrderId(22);
+        List<Orderdetail> list = service.getByOrderId(1);
         System.out.println("list = " + list);
     }
 

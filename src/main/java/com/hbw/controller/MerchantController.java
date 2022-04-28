@@ -94,6 +94,11 @@ public class MerchantController extends ApiController {
         return success(this.merchantService.updateById(merchant));
     }
 
+    @PutMapping("updateMerchantState/{id}/{state}")
+    public int updateMerchantState(@PathVariable Integer id, @PathVariable String state) {
+        return this.merchantService.updateMerchantState(id, state);
+    }
+
     /**
      * 删除数据
      *

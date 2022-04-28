@@ -15,5 +15,11 @@
         from merchant
     </select>
 
+    <update id="updateMerchantState">
+        update merchant
+        set state = #{state}
+        where id = #{id}
+    </update>
+
 </mapper>
 

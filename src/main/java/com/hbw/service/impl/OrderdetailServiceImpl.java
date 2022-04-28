@@ -22,12 +22,19 @@ public class OrderdetailServiceImpl extends ServiceImpl<OrderdetailDao, Orderdet
     @Resource
     private OrderdetailDao mapper;
 
+    @Override
     public List<Orderdetail> getByOrderId(Integer orderid){
         return mapper.getByOrderId(orderid);
     }
 
+    @Override
     public ProductAndStore getByOrderDetailId(Integer id){
         return mapper.getByOrderDetailId(id);
+    }
+
+    @Override
+    public List<Orderdetail> getByStoreId(Integer storeid){
+        return mapper.getByStoreId(storeid);
     }
 
 }

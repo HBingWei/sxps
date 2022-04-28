@@ -63,6 +63,11 @@ public class OrderdetailController extends ApiController {
         return success(this.orderdetailService.getByOrderDetailId(id));
     }
 
+    @GetMapping("getByStoreId/{storeid}")
+    public List<Orderdetail> getByStoreId(@PathVariable Integer storeid) {
+        return this.orderdetailService.getByStoreId(storeid);
+    }
+
 
     /**
      *  通过主键集合批量查询数据

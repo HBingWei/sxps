@@ -27,6 +27,28 @@ public class Store extends Model<Store> {
     
     private String about;
 
+    private String state;
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id=" + id +
+                ", merid=" + merid +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", tel='" + tel + '\'' +
+                ", about='" + about + '\'' +
+                ", state='" + state + '\'' +
+                '}';
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 
     public Integer getId() {
         return id;

@@ -11,7 +11,7 @@
     </insert>
 
     <select id="selectByCustId" resultType="com.hbw.entity.Orderlist">
-        select id, date, custid, storeid
+        select id, date, custid
         from orderlist
         where custid = #{custid}
     </select>
