@@ -19,5 +19,7 @@ public interface GoodsDao extends BaseMapper<Goods> {
     List<Integer> getGoodsIdsByStoreId(Integer storeid);
 
     List<Goods> getGoodsByStoreId(Integer storeid);
+
+    List<Goods> getAll();
 }
 

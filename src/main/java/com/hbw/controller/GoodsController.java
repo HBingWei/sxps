@@ -84,6 +84,11 @@ public class GoodsController extends ApiController {
         return success(result);
     }
 
+    @GetMapping("getAll")
+    public List<Goods> getAll() {
+        return this.goodsService.getAll();
+    }
+
     /**
      *
      * @param typeid 商品类型

@@ -40,5 +40,10 @@
         where storeid = #{storeid}
     </select>
 
+    <select id="getAll" resultType="com.hbw.entity.Goods">
+        select *
+        from goods
+    </select>
+
 </mapper>
 

@@ -20,5 +20,7 @@ public interface GoodsService extends IService<Goods> {
 
     List<Goods> getGoodsByStoreId(Integer storeid);
 
+    List<Goods> getAll();
+
 }
 
