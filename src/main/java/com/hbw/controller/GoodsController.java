@@ -43,7 +43,6 @@ public class GoodsController extends ApiController {
         qw.eq("typeid", typeid);
         qw.last("limit 4");
         List<Goods> list = goodsService.list(qw);
-        list.forEach(System.out::println);
         return success(list);
     }
 

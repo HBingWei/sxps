@@ -21,6 +21,8 @@ public class ProductAndStore {
 
     private String storeAddress;
 
+    private String imgPath;
+
     @Override
     public String toString() {
         return "ProductAndStore{" +
@@ -34,7 +36,16 @@ public class ProductAndStore {
                 ", storeid=" + storeid +
                 ", storeName='" + storeName + '\'' +
                 ", storeAddress='" + storeAddress + '\'' +
+                ", imgPath='" + imgPath + '\'' +
                 '}';
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     public Integer getNumber() {

@@ -13,6 +13,7 @@
                goods.typeid,
                goods.storeid,
                goods.stock,
+               goods.imgpath,
                store.name as storeName
         from goods
                  left join store
@@ -35,7 +36,8 @@
                state,
                typeid,
                storeid,
-               stock
+               stock,
+               imgpath
         from goods
         where storeid = #{storeid}
     </select>

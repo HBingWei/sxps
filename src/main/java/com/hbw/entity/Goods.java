@@ -31,6 +31,8 @@ public class Goods extends Model<Goods> {
 
     private Integer stock;
 
+    private String imgpath;
+
     @Override
     public String toString() {
         return "Goods{" +
@@ -42,7 +44,16 @@ public class Goods extends Model<Goods> {
                 ", typeid=" + typeid +
                 ", storeid=" + storeid +
                 ", stock=" + stock +
+                ", imgPath='" + imgpath + '\'' +
                 '}';
+    }
+
+    public String getImgpath() {
+        return imgpath;
+    }
+
+    public void setImgpath(String imgpath) {
+        this.imgpath = imgpath;
     }
 
     public Integer getStock() {
