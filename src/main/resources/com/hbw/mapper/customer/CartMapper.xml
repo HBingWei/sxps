@@ -13,7 +13,8 @@
                cart.price,
                cart.total,
                store.name as storeName,
-               goods.name as goodsName
+               goods.name as goodsName,
+               goods.imgpath
         from cart
                  left join
              store

@@ -24,6 +24,8 @@ public class CartAndStore {
 
     private Double total;
 
+    private String imgpath;
+
     @Override
     public String toString() {
         return "CartAndStore{" +
@@ -36,7 +38,16 @@ public class CartAndStore {
                 ", num=" + num +
                 ", price=" + price +
                 ", total=" + total +
+                ", imgpath='" + imgpath + '\'' +
                 '}';
+    }
+
+    public String getImgpath() {
+        return imgpath;
+    }
+
+    public void setImgpath(String imgpath) {
+        this.imgpath = imgpath;
     }
 
     public String getGoodsName() {
