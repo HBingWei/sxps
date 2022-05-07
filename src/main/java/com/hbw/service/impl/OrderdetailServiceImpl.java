@@ -37,5 +37,15 @@ public class OrderdetailServiceImpl extends ServiceImpl<OrderdetailDao, Orderdet
         return mapper.getByStoreId(storeid);
     }
 
+    @Override
+    public List<Integer> getCustIdByGoodsId(Integer goodsid) {
+        return mapper.getCustIdByGoodsId(goodsid);
+    }
+
+    @Override
+    public List<Orderdetail> getGoodsDetailsByCustId(Integer custid) {
+        return mapper.getGoodsDetailsByCustId(custid);
+    }
+
 }
 

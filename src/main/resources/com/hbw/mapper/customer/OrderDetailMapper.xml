@@ -51,5 +51,25 @@
         where orderid = #{storeid}
     </select>
 
+    <select id="getCustIdByGoodsId" resultType="java.lang.Integer">
+        select custid
+        from orderdetail
+        where goodsid = #{goodsid}
+    </select>
+
+    <select id="getGoodsDetailsByCustId" resultType="com.hbw.entity.Orderdetail">
+        select id,
+               goodsid,
+               goodsname,
+               goodsprice,
+               number,
+               total,
+               custid,
+               storeid,
+               orderid
+        from orderdetail
+        where custid = #{custid}
+    </select>
+
 </mapper>
 

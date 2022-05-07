@@ -1,18 +1,24 @@
 package com.hbw.controller;
 
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hbw.controller.config.collaborativeFiltering.RandomNumUtil;
+import com.hbw.controller.config.collaborativeFiltering.SimilarityUtil;
+import com.hbw.entity.Goods;
+import com.hbw.entity.GoodsScore;
 import com.hbw.entity.Orderdetail;
 import com.hbw.service.OrderdetailService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * (Orderdetail)表控制层
@@ -32,7 +38,7 @@ public class OrderdetailController extends ApiController {
     /**
      * 分页查询所有数据
      *
-     * @param page 分页对象
+     * @param page        分页对象
      * @param orderdetail 查询实体
      * @return 所有数据
      */
@@ -54,12 +60,12 @@ public class OrderdetailController extends ApiController {
 
 
     @GetMapping("getByOrderId/{orderId}")
-    public R getByOrderId(@PathVariable Integer orderId){
+    public R getByOrderId(@PathVariable Integer orderId) {
         return success(this.orderdetailService.getByOrderId(orderId));
     }
 
     @GetMapping("getOrderDetail/{id}")
-    public R getByOrderDetailId(@PathVariable Integer id){
+    public R getByOrderDetailId(@PathVariable Integer id) {
         return success(this.orderdetailService.getByOrderDetailId(id));
     }
 
@@ -68,15 +74,128 @@ public class OrderdetailController extends ApiController {
         return this.orderdetailService.getByStoreId(storeid);
     }
 
+    @GetMapping("getRecommendGoods/{orderId}")
+    public List<GoodsScore> getRecommendGoods(@PathVariable Integer orderId) {
+        // 通过本次购买生成的订单号获取订单中所有的订单详情
+        List<Orderdetail> orderDetails = this.orderdetailService.getByOrderId(orderId);
+        List<Integer> customerIds = new ArrayList<>();
+        // 通过每个订单详情中的商品id获取到所有购买过该商品的顾客id
+        for (Orderdetail orderdetail : orderDetails) {
+            customerIds.addAll(this.orderdetailService.getCustIdByGoodsId(orderdetail.getGoodsid()));
+        }
+        // 去除重复的顾客id
+        List<Integer> finalCustomerIds = new ArrayList<>();
+        for (Integer customerId : customerIds) {
+            if (!finalCustomerIds.contains(customerId)) {
+                finalCustomerIds.add(customerId);
+            }
+        }
+        // 通过每个顾客id查找其购买过的所有订单详情
+        List<Orderdetail> alternateGoods = new ArrayList<>();
+        for (Integer finalCustomerId : finalCustomerIds) {
+            alternateGoods.addAll(this.orderdetailService.getGoodsDetailsByCustId(finalCustomerId));
+        }
+        // 排除掉本次订单中出现的商品
+//        for (int i = 0; i < alternateGoods.size(); i++) {
+//            for (Orderdetail orderdetail : orderDetails) {
+//                if (alternateGoods.get(i).getGoodsid().equals(orderdetail.getGoodsid()))
+//                    alternateGoods.remove(i);
+//            }
+//        }
+        // 商品的评分系统
+        List<GoodsScore> goodsScoreList = new ArrayList<>();
+        for (Orderdetail alternateProduct : alternateGoods) {
+            boolean flag = false;
+            if (goodsScoreList.size() != 0) {
+                for (GoodsScore value : goodsScoreList) {
+                    if (value.getGoodsId().equals(alternateProduct.getGoodsid())) {
+                        List<Double> tempScore = value.getScore();
+                        double score = (alternateProduct.getNumber() * 0.5 > 5) ? 5 : (alternateProduct.getNumber() * 0.5);
+                        tempScore.add(score);
+                        value.setScore(tempScore);
+                        flag = true;
+                    }
+                }
+                if (!flag) {
+                    createNewGoodsScore(goodsScoreList, alternateProduct);
+                }
+            } else {
+                createNewGoodsScore(goodsScoreList, alternateProduct);
+            }
+        }
+        // 将得到的商品评分集合分成两部分，一部分是本次订单中的商品评分，另一部分是候补商品评分
+        List<GoodsScore> OrderGoodsScoreList = new ArrayList<>();
+        for (int i = 0; i < goodsScoreList.size(); i++) {
+            for (Orderdetail orderdetail : orderDetails) {
+                if (goodsScoreList.get(i).getGoodsId().equals(orderdetail.getGoodsid())) {
+                    OrderGoodsScoreList.add(goodsScoreList.get(i));
+                    goodsScoreList.remove(i);
+                }
+            }
+        }
+        // 筛选商品评分集合中评分次数大于2次的商品（选择其中四个展示给顾客）。如果符合条件的商品数量小于4，则选择使用同类型商品推荐。
+        List<GoodsScore> finalGoodsScoreList = new ArrayList<>();
+        for (GoodsScore goodsScore : goodsScoreList) {
+            if (goodsScore.getScore().size() >= 2)
+                finalGoodsScoreList.add(goodsScore);
+        }
+        // 计算所购买商品与候补商品的相似度。使用余弦相似度算法
+        getTwoRandomScore(OrderGoodsScoreList);
+        if (finalGoodsScoreList.size() >= 2) {
+            // 使用随机数算法随机获取余弦相似度算法参数，这里只随机选择2个商品评分进行余弦相似算法
+            getTwoRandomScore(finalGoodsScoreList);
+            // 对整理好的候补商品评分与订单中的商品逐个进行余弦相似度计算
+
+            for (int i = 0; i < OrderGoodsScoreList.size(); i++) {
+                for (GoodsScore goodsScore : finalGoodsScoreList) {
+                    double temp = SimilarityUtil.similarity(OrderGoodsScoreList.get(i).getScore(), goodsScore.getScore());
+                }
+            }
+
+        }
+        // 去除订单详情中重复的商品id
+        List<Integer> finalAlternateGoodsIds = new ArrayList<>();
+        for (Orderdetail alternateGood : alternateGoods) {
+            if (!finalAlternateGoodsIds.contains(alternateGood.getGoodsid())) {
+                finalAlternateGoodsIds.add(alternateGood.getGoodsid());
+            }
+        }
+        return goodsScoreList;
+    }
+
+    private void createNewGoodsScore(List<GoodsScore> goodsScoreList, Orderdetail alternateProduct) {
+        GoodsScore goodsScore = new GoodsScore(alternateProduct.getGoodsid(), alternateProduct.getNumber());
+        double score = (alternateProduct.getNumber() * 0.5 > 5) ? 5 : (alternateProduct.getNumber() * 0.5);
+        List<Double> newScore = new ArrayList<>();
+        newScore.add(score);
+        goodsScore.setScore(newScore);
+        goodsScoreList.add(goodsScore);
+    }
+
+    private void getTwoRandomScore(List<GoodsScore> finalGoodsScoreList) {
+        for (GoodsScore goodsScore : finalGoodsScoreList) {
+            if (goodsScore.getScore().size() > 2) {
+                List<Integer> indexList = RandomNumUtil.getRandomNum(0, goodsScore.getScore().size() - 1, 2);
+                List<Double> productScore = goodsScore.getScore();
+                List<Double> newProductScore = new ArrayList<>();
+                for (int i = 0; i < Objects.requireNonNull(indexList).size(); i++) {
+                    newProductScore.add(productScore.get(indexList.get(i)));
+                }
+                goodsScore.setScore(newProductScore);
+            }
+        }
+    }
+
 
     /**
-     *  通过主键集合批量查询数据
+     * 通过主键集合批量查询数据
+     *
      * @param idList 主键集合
      * @return 查询结果
      */
     @GetMapping("getByOrderDetailIds")
     @ResponseBody
-    public  R getByOrderDetailIds(@RequestParam("idList") List<Long> idList) {
+    public R getByOrderDetailIds(@RequestParam("idList") List<Long> idList) {
         return success(this.orderdetailService.listByIds(idList));
     }
 

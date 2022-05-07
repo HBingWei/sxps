@@ -20,5 +20,9 @@ public interface OrderdetailService extends IService<Orderdetail> {
 
     List<Orderdetail> getByStoreId(Integer storeid);
 
+    List<Integer> getCustIdByGoodsId(Integer goodsid);
+
+    List<Orderdetail> getGoodsDetailsByCustId(Integer custid);
+
 }
 
