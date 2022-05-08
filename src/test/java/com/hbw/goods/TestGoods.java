@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -55,6 +56,15 @@ public class TestGoods {
     void selectProductAndStoreByTypeId() {
         List<ProductAndStore> list = goodsService.selectProductAndStoreByTypeId(1,1);
         System.out.println("list = " + list);
+    }
+
+    @Test
+    void testGetRecommendGoods() {
+        List<Integer> idList = new ArrayList<>();
+        idList.add(7);
+        idList.add(255);
+        List<Goods> goodsList = (List<Goods>) goodsService.listByIds(idList);
+        System.out.println("goodsList = " + goodsList);
     }
 
 }

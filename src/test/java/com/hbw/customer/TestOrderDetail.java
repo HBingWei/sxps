@@ -10,9 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @SpringBootTest
 public class TestOrderDetail {
@@ -49,7 +47,7 @@ public class TestOrderDetail {
 
     @Test
     void testGetGoodsScore() {
-        List<Orderdetail> orderDetails = service.getByOrderId(54);
+        List<Orderdetail> orderDetails = service.getByOrderId(56);
         List<Integer> customerIds = new ArrayList<>();
         // 通过每个订单详情中的商品id获取到所有购买过该商品的顾客id
         for (Orderdetail orderdetail : orderDetails) {
@@ -67,13 +65,6 @@ public class TestOrderDetail {
         for (Integer finalCustomerId : finalCustomerIds) {
             alternateGoods.addAll(service.getGoodsDetailsByCustId(finalCustomerId));
         }
-//        // 排除掉本次订单中出现的商品
-//        for (int i = 0; i < alternateGoods.size(); i++) {
-//            for (Orderdetail orderdetail : orderDetails) {
-//                if (alternateGoods.get(i).getGoodsid().equals(orderdetail.getGoodsid()))
-//                    alternateGoods.remove(i);
-//            }
-//        }
         // 商品的评分系统
         List<GoodsScore> goodsScoreList = new ArrayList<>();
         for (Orderdetail alternateProduct : alternateGoods) {
@@ -83,7 +74,7 @@ public class TestOrderDetail {
                 for (GoodsScore value : goodsScoreList) {
                     if (value.getGoodsId().equals(alternateProduct.getGoodsid())) {
                         List<Double> tempScore = value.getScore();
-                        double score = (alternateProduct.getNumber() * 0.5 > 5) ? 5 : (alternateProduct.getNumber() * 0.5);
+                        double score = (alternateProduct.getNumber() * 1.3 > 5) ? 5 : (alternateProduct.getNumber() * 1.3);
                         tempScore.add(score);
                         value.setScore(tempScore);
                         flag = true;
@@ -91,7 +82,7 @@ public class TestOrderDetail {
                 }
                 if (!flag) {
                     GoodsScore goodsScore = new GoodsScore(alternateProduct.getGoodsid(), alternateProduct.getNumber());
-                    double score = (alternateProduct.getNumber() * 0.5 > 5) ? 5 : (alternateProduct.getNumber() * 0.5);
+                    double score = (alternateProduct.getNumber() * 1.3 > 5) ? 5 : (alternateProduct.getNumber() * 1.3);
                     List<Double> newScore = new ArrayList<>();
                     newScore.add(score);
                     goodsScore.setScore(newScore);
@@ -99,7 +90,7 @@ public class TestOrderDetail {
                 }
             } else {
                 GoodsScore goodsScore = new GoodsScore(alternateProduct.getGoodsid(), alternateProduct.getNumber());
-                double score = (alternateProduct.getNumber() * 0.5 > 5) ? 5 : (alternateProduct.getNumber() * 0.5);
+                double score = (alternateProduct.getNumber() * 1.3 > 5) ? 5 : (alternateProduct.getNumber() * 1.3);
                 List<Double> newScore = new ArrayList<>();
                 newScore.add(score);
                 goodsScore.setScore(newScore);
@@ -156,13 +147,50 @@ public class TestOrderDetail {
                 }
             }
         }
+        System.out.println("finalGoodsScoreList = " + finalGoodsScoreList);
         System.out.println("---------------------------------------------");
-        for (int i = 0; i < OrderGoodsScoreList.size(); i++) {
+        // 获取每个候补商品与所购买商品对应的余弦相似度
+        Double[] scoreList = new Double[finalGoodsScoreList.size() * OrderGoodsScoreList.size()];
+        int[] goodsIdList = new int[finalGoodsScoreList.size() * OrderGoodsScoreList.size()];
+        int index = 0;
+        for (GoodsScore value : OrderGoodsScoreList) {
             for (GoodsScore goodsScore : finalGoodsScoreList) {
-                double temp = SimilarityUtil.similarity(OrderGoodsScoreList.get(i).getScore(), goodsScore.getScore());
-                System.out.println("temp = " + temp);
+                double temp = SimilarityUtil.similarity(value.getScore(), goodsScore.getScore());
+                goodsIdList[index] = goodsScore.getGoodsId();
+                scoreList[index] = temp;
+                index++;
             }
         }
-        System.out.println("finalGoodsScoreList = " + finalGoodsScoreList);
+
+        for (double score : scoreList) {
+            System.out.print(score + ", ");
+        }
+        System.out.println();
+
+        // 对相似度进行降序排序，优先获取相似度最高的商品
+        Arrays.sort(scoreList, Collections.reverseOrder());
+
+        for (double score : scoreList) {
+            System.out.print(score + ", ");
+        }
+        System.out.println();
+
+        List<Integer> finalAlternateGoodsIdsList = new ArrayList<>();
+        for (double score : scoreList) {
+            for (int i = 0; i < scoreList.length; i++) {
+                if (score == scoreList[i]) {
+                    finalAlternateGoodsIdsList.add(goodsIdList[i]);
+                }
+            }
+        }
+        System.out.println("finalAlternateGoodsIdsList = " + finalAlternateGoodsIdsList);
+        // 去除重复的商品id
+        List<Integer> lastAlternateGoodsIdsList = new ArrayList<>();
+        for (Integer goodsId : finalAlternateGoodsIdsList) {
+            if (!lastAlternateGoodsIdsList.contains(goodsId)) {
+                lastAlternateGoodsIdsList.add(goodsId);
+            }
+        }
+        System.out.println("lastAlternateGoodsIdsList = " + lastAlternateGoodsIdsList);
     }
 }

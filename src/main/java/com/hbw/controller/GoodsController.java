@@ -176,5 +176,11 @@ public class GoodsController extends ApiController {
     public R delete(@RequestParam("idList") List<Long> idList) {
         return success(this.goodsService.removeByIds(idList));
     }
+
+    @PostMapping("getRecommendGoodsList")
+    public R getRecommendGoodsList(@RequestBody List<Long> idList) {
+        System.out.println(idList);
+        return success(this.goodsService.listByIds(idList));
+    }
 }
 
