@@ -74,6 +74,7 @@ public class OrderdetailController extends ApiController {
     @GetMapping("getRecommendGoods/{orderId}")
     public List<Integer> getRecommendGoods(@PathVariable Integer orderId) {
         // 通过本次购买生成的订单号获取订单中所有的订单详情
+        System.out.println(">>>orderId:"+ orderId);
         List<Orderdetail> orderDetails = this.orderdetailService.getByOrderId(orderId);
         List<Integer> customerIds = new ArrayList<>();
         // 通过每个订单详情中的商品id获取到所有购买过该商品的顾客id
@@ -228,7 +229,7 @@ public class OrderdetailController extends ApiController {
      * @param orderdetail 实体对象
      * @return 修改结果
      */
-    @PutMapping
+    @PutMapping("update")
     public R update(@RequestBody Orderdetail orderdetail) {
         return success(this.orderdetailService.updateById(orderdetail));
     }

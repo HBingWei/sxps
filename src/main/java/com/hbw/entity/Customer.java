@@ -35,6 +35,8 @@ public class Customer extends Model<Customer> {
 
     private String address;
 
+    private String specificaddress;
+
     public Customer() {
     }
 
@@ -50,7 +52,16 @@ public class Customer extends Model<Customer> {
                 ", sex=" + sex +
                 ", authid=" + authid +
                 ", address='" + address + '\'' +
+                ", specificaddress='" + specificaddress + '\'' +
                 '}';
+    }
+
+    public String getSpecificaddress() {
+        return specificaddress;
+    }
+
+    public void setSpecificaddress(String specificaddress) {
+        this.specificaddress = specificaddress;
     }
 
     public Integer getId() {

@@ -5,7 +5,7 @@
 <mapper namespace="com.hbw.dao.StoreDao">
 
     <select id="getByMerId" resultType="com.hbw.entity.Store">
-        select id, merid, name, address, tel, about, state
+        select id, merid, name, address, tel, about, state, specificaddress
         from store
         where merid = #{merid}
     </select>

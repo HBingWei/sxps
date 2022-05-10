@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hbw.entity.Cart;
+import com.hbw.entity.CartAndStore;
 import com.hbw.service.CartService;
 import org.springframework.web.bind.annotation.*;
 

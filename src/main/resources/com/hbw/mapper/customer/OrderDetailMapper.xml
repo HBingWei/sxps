@@ -13,7 +13,11 @@
                total,
                custid,
                storeid,
-               orderid
+               orderid,
+               state,
+               storeaddress,
+               storespecificaddress,
+               distribution
         from orderdetail
         where orderid = #{orderid}
     </select>
@@ -26,6 +30,10 @@
                orderdetail.number,
                orderdetail.total,
                orderdetail.storeid,
+               orderdetail.state,
+               orderdetail.storeaddress,
+               orderdetail.storespecificaddress,
+               orderdetail.distribution
                goods.content,
                goods.state,
                goods.stock,
@@ -46,7 +54,11 @@
                total,
                custid,
                storeid,
-               orderid
+               orderid,
+               state,
+               storeaddress,
+               storespecificaddress,
+               distribution
         from orderdetail
         where orderid = #{storeid}
     </select>
@@ -66,7 +78,11 @@
                total,
                custid,
                storeid,
-               orderid
+               orderid,
+               state,
+               storeaddress,
+               storespecificaddress,
+               distribution
         from orderdetail
         where custid = #{custid}
     </select>

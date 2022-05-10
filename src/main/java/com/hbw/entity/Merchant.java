@@ -35,6 +35,8 @@ public class Merchant extends Model<Merchant> {
 
     private String state;
 
+    private String specificaddress;
+
     @Override
     public String toString() {
         return "Merchant{" +
@@ -47,7 +49,16 @@ public class Merchant extends Model<Merchant> {
                 ", sex=" + sex +
                 ", authid=" + authid +
                 ", state='" + state + '\'' +
+                ", specificaddress='" + specificaddress + '\'' +
                 '}';
+    }
+
+    public String getSpecificaddress() {
+        return specificaddress;
+    }
+
+    public void setSpecificaddress(String specificaddress) {
+        this.specificaddress = specificaddress;
     }
 
     public String getState() {

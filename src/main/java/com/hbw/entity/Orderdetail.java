@@ -33,6 +33,14 @@ public class Orderdetail extends Model<Orderdetail> {
     
     private Integer orderid;
 
+    private String state;
+
+    private String storeaddress;
+
+    private String storespecificaddress;
+
+    private String distribution;
+
     @Override
     public String toString() {
         return "Orderdetail{" +
@@ -45,7 +53,43 @@ public class Orderdetail extends Model<Orderdetail> {
                 ", custid=" + custid +
                 ", storeid=" + storeid +
                 ", orderid=" + orderid +
+                ", state='" + state + '\'' +
+                ", storeaddress='" + storeaddress + '\'' +
+                ", storespecificaddress='" + storespecificaddress + '\'' +
+                ", distribution='" + distribution + '\'' +
                 '}';
+    }
+
+    public String getDistribution() {
+        return distribution;
+    }
+
+    public void setDistribution(String distribution) {
+        this.distribution = distribution;
+    }
+
+    public String getStoreaddress() {
+        return storeaddress;
+    }
+
+    public void setStoreaddress(String storeaddress) {
+        this.storeaddress = storeaddress;
+    }
+
+    public String getStorespecificaddress() {
+        return storespecificaddress;
+    }
+
+    public void setStorespecificaddress(String storespecificaddress) {
+        this.storespecificaddress = storespecificaddress;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public Double getGoodsprice() {

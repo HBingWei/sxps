@@ -47,7 +47,7 @@ public class TestOrderDetail {
 
     @Test
     void testGetGoodsScore() {
-        List<Orderdetail> orderDetails = service.getByOrderId(56);
+        List<Orderdetail> orderDetails = service.getByOrderId(157);
         List<Integer> customerIds = new ArrayList<>();
         // 通过每个订单详情中的商品id获取到所有购买过该商品的顾客id
         for (Orderdetail orderdetail : orderDetails) {

@@ -21,6 +21,8 @@ public class ProductAndStore {
 
     private String storeAddress;
 
+    private String specificaddress;
+
     private String imgPath;
 
     @Override
@@ -36,8 +38,17 @@ public class ProductAndStore {
                 ", storeid=" + storeid +
                 ", storeName='" + storeName + '\'' +
                 ", storeAddress='" + storeAddress + '\'' +
+                ", specificaddress='" + specificaddress + '\'' +
                 ", imgPath='" + imgPath + '\'' +
                 '}';
+    }
+
+    public String getSpecificaddress() {
+        return specificaddress;
+    }
+
+    public void setSpecificaddress(String specificaddress) {
+        this.specificaddress = specificaddress;
     }
 
     public String getImgPath() {

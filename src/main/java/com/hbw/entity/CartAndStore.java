@@ -26,6 +26,12 @@ public class CartAndStore {
 
     private String imgpath;
 
+    private String storeaddress;
+
+    private String state;
+
+    private String specificaddress;
+
     @Override
     public String toString() {
         return "CartAndStore{" +
@@ -39,7 +45,34 @@ public class CartAndStore {
                 ", price=" + price +
                 ", total=" + total +
                 ", imgpath='" + imgpath + '\'' +
+                ", storeaddress='" + storeaddress + '\'' +
+                ", state='" + state + '\'' +
+                ", specificaddress='" + specificaddress + '\'' +
                 '}';
+    }
+
+    public String getStoreaddress() {
+        return storeaddress;
+    }
+
+    public void setStoreaddress(String storeaddress) {
+        this.storeaddress = storeaddress;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getSpecificaddress() {
+        return specificaddress;
+    }
+
+    public void setSpecificaddress(String specificaddress) {
+        this.specificaddress = specificaddress;
     }
 
     public String getImgpath() {
