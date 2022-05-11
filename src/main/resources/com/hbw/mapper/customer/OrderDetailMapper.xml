@@ -17,7 +17,8 @@
                state,
                storeaddress,
                storespecificaddress,
-               distribution
+               distribution,
+               appointment
         from orderdetail
         where orderid = #{orderid}
     </select>
@@ -33,7 +34,8 @@
                orderdetail.state,
                orderdetail.storeaddress,
                orderdetail.storespecificaddress,
-               orderdetail.distribution
+               orderdetail.distribution,
+               orderdetail.appointment,
                goods.content,
                goods.state,
                goods.stock,
@@ -58,9 +60,10 @@
                state,
                storeaddress,
                storespecificaddress,
-               distribution
+               distribution,
+               appointment
         from orderdetail
-        where orderid = #{storeid}
+        where storeid = #{storeid}
     </select>
 
     <select id="getCustIdByGoodsId" resultType="java.lang.Integer">
@@ -82,10 +85,24 @@
                state,
                storeaddress,
                storespecificaddress,
-               distribution
+               distribution,
+               appointment
         from orderdetail
         where custid = #{custid}
     </select>
+
+    <update id="updateODetailStateByOrderId">
+        update orderdetail
+        set state = '已完成'
+        where orderid = #{orderid}
+    </update>
+
+    <update id="updateAppointmentById">
+        update orderdetail
+        set appointment  = #{appointment},
+            distribution = #{distribution}
+        where id = #{id}
+    </update>
 
 </mapper>
 

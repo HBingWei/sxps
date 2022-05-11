@@ -24,5 +24,9 @@ public interface OrderdetailService extends IService<Orderdetail> {
 
     List<Orderdetail> getGoodsDetailsByCustId(Integer custid);
 
+    int updateODetailStateByOrderId(Integer orderid);
+
+    int updateAppointmentById(Integer id,String appointment, String distribution);
+
 }
 

@@ -4,23 +4,29 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hbw.dao.OrderlistDao">
     <insert id="insertOrder">
-        insert into orderlist(date,custid) values (#{date},#{custid})
+        insert into orderlist(date,custid,state) values (#{date},#{custid},#{state})
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
 
     <select id="selectByCustId" resultType="com.hbw.entity.Orderlist">
-        select id, date, custid
+        select id, date, custid, state,
         from orderlist
         where custid = #{custid}
     </select>
 
     <select id="selectByStoreId" resultType="com.hbw.entity.Orderlist">
-        select id, date, custid
+        select id, date, custid, state
         from orderlist
         where custid = #{custid}
     </select>
+
+    <update id="updateState">
+        update orderlist
+        set state = '已完成'
+        where id = #{id}
+    </update>
 
 </mapper>
 

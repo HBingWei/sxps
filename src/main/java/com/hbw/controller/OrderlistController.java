@@ -71,6 +71,7 @@ public class OrderlistController extends ApiController {
 
     @PostMapping("insertOrder")
     public int insertOrder(@RequestBody Orderlist orderlist) {
+        System.out.println("orderlist = " + orderlist);
         this.orderlistService.insertOrder(orderlist);
         System.out.println("orderList.id = " + orderlist.getId());
         return orderlist.getId();
@@ -82,9 +83,14 @@ public class OrderlistController extends ApiController {
      * @param orderlist 实体对象
      * @return 修改结果
      */
-    @PutMapping
+    @PutMapping("update")
     public R update(@RequestBody Orderlist orderlist) {
         return success(this.orderlistService.updateById(orderlist));
+    }
+
+    @PutMapping("updateState/{id}")
+    public int updateState(@PathVariable Integer id) {
+        return this.orderlistService.updateState(id);
     }
 
     /**

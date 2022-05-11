@@ -29,5 +29,10 @@ public class OrderlistServiceImpl extends ServiceImpl<OrderlistDao, Orderlist> i
         return mapper.selectByCustId(custid);
     }
 
+    @Override
+    public int updateState(Integer id) {
+        return mapper.updateState(id);
+    }
+
 }
 

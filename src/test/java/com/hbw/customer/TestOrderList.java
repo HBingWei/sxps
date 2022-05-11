@@ -19,7 +19,7 @@ public class TestOrderList {
     void testInsertOrderList(){
         Orderlist orderlist = new Orderlist();
         orderlist.setCustid(10001);
-        orderlist.setDate(new Date());
+//        orderlist.setDate(new Date());
         boolean flag = service.save(orderlist);
         System.out.println("flag = " + flag);
     }
@@ -28,7 +28,7 @@ public class TestOrderList {
     void testInsertOrder(){
         Orderlist orderlist = new Orderlist();
         orderlist.setCustid(10001);
-        orderlist.setDate(new Date());
+//        orderlist.setDate(new Date());
         int res = service.insertOrder(orderlist);
         System.out.println("orderList.id = " + orderlist.getId());
         System.out.println("res = " + res);

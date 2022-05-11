@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * (Orderdetail)表实体类
@@ -41,6 +42,8 @@ public class Orderdetail extends Model<Orderdetail> {
 
     private String distribution;
 
+    private Date appointment;
+
     @Override
     public String toString() {
         return "Orderdetail{" +
@@ -57,7 +60,16 @@ public class Orderdetail extends Model<Orderdetail> {
                 ", storeaddress='" + storeaddress + '\'' +
                 ", storespecificaddress='" + storespecificaddress + '\'' +
                 ", distribution='" + distribution + '\'' +
+                ", appointment=" + appointment +
                 '}';
+    }
+
+    public Date getAppointment() {
+        return appointment;
+    }
+
+    public void setAppointment(Date appointment) {
+        this.appointment = appointment;
     }
 
     public String getDistribution() {

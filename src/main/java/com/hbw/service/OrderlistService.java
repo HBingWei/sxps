@@ -17,5 +17,7 @@ public interface OrderlistService extends IService<Orderlist> {
 
     List<Orderlist> selectByCustId(Integer custid);
 
+    int updateState(Integer id);
+
 }
 

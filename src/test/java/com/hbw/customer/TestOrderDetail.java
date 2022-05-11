@@ -122,22 +122,22 @@ public class TestOrderDetail {
         System.out.println("======================");
         List<GoodsScore> finalGoodsStoreList = new ArrayList<>();
         for (GoodsScore goodsScore : goodsScoreList) {
-            if (goodsScore.getScore().size() >= 2)
+            if (goodsScore.getScore().size() >= 4)
                 finalGoodsStoreList.add(goodsScore);
         }
         System.out.println("finalGoodsStoreList = " + finalGoodsStoreList);
         System.out.println(finalGoodsStoreList.size());
-        // 筛选商品评分集合中评分次数大于2次的商品（选择其中四个展示给顾客）。如果符合条件的商品数量小于4，则选择使用同类型商品推荐。
+        // 筛选商品评分集合中评分次数大于4次的商品（选择其中四个展示给顾客）。如果符合条件的商品数量小于4，则选择使用同类型商品推荐。
         List<GoodsScore> finalGoodsScoreList = new ArrayList<>();
         for (GoodsScore goodsScore : goodsScoreList) {
-            if (goodsScore.getScore().size() >= 2)
+            if (goodsScore.getScore().size() >= 4)
                 finalGoodsScoreList.add(goodsScore);
         }
         // 计算所购买商品与候补商品的相似度。使用余弦相似度算法
-        if (finalGoodsScoreList.size() >= 2) {
+        if (finalGoodsScoreList.size() >= 4) {
             for (GoodsScore goodsScore : finalGoodsScoreList) {
-                if (goodsScore.getScore().size() > 2) {
-                    List<Integer> indexList = RandomNumUtil.getRandomNum(0, goodsScore.getScore().size() - 1, 2);
+                if (goodsScore.getScore().size() > 4) {
+                    List<Integer> indexList = RandomNumUtil.getRandomNum(0, goodsScore.getScore().size() - 1, 4);
                     List<Double> productScore = goodsScore.getScore();
                     List<Double> newProductScore = new ArrayList<>();
                     for (int i = 0; i < Objects.requireNonNull(indexList).size(); i++) {
